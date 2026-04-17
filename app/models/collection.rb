@@ -15,6 +15,7 @@
 #  original_number_of_items :integer
 #  sensitive                :boolean          not null
 #  uri                      :string
+#  url                      :string
 #  created_at               :datetime         not null
 #  updated_at               :datetime         not null
 #  account_id               :bigint(8)        not null
@@ -36,11 +37,9 @@ class Collection < ApplicationRecord
   validates :name, length: { maximum: 40 }, if: :local?
   validates :name, length: { maximum: NAME_LENGTH_HARD_LIMIT }, if: :remote?
   validates :description,
-            presence: true,
             length: { maximum: 100 },
             if: :local?
   validates :description_html,
-            presence: true,
             length: { maximum: DESCRIPTION_LENGTH_HARD_LIMIT },
             if: :remote?
   validates :local, inclusion: [true, false]
